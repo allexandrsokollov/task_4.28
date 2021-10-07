@@ -6,9 +6,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int index = readIntFromConsole("Write index of monotone number:");
+        //int index = readIntFromConsole("Write index of monotone number:");
 
-        System.out.println("\n\nNumber is " + findMonotoneNumberWithNumberN(index));
+        //System.out.println("\n\nNumber is " + findMonotoneNumberWithNumberN(index));
+
+        System.out.println(isNumberDigitsMonotone(123));
+        System.out.println(isNumberDigitsMonotone(10));
+        System.out.println(isNumberDigitsMonotone(321));
+        System.out.println(isNumberDigitsMonotone(123321));
+
     }
 
     public static boolean isNumberDigitsMonotone(int number) {
@@ -27,14 +33,17 @@ public class Main {
         int isPreviousPairIncreasing;
 
         isPreviousPairIncreasing = isRightPairIncreases(number);
+        number = number / 10;
 
-        while (number > 10) {
+        while (number > 0) {
             isIncreases = isRightPairIncreases(number);
-            number =number / 10;
+            number = number / 10;
 
+            if(isPreviousPairIncreasing == 0) {
+                continue;
+            }
             if(isPreviousPairIncreasing + isIncreases == 0 && isIncreases != 0) {
                 return false;
-
             }
         }
 
