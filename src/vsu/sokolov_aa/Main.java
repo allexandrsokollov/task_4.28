@@ -1,25 +1,17 @@
 package vsu.sokolov_aa;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        //int index = readIntFromConsole("Write index of monotone number:");
+        int index = readIntFromConsole("Write index of monotone number:");
 
-        //System.out.println("\n\nNumber is " + findMonotoneNumberWithNumberN(index));
-
-        System.out.println(isNumberDigitsMonotone(123));
-        System.out.println(isNumberDigitsMonotone(10));
-        System.out.println(isNumberDigitsMonotone(321));
-        System.out.println(isNumberDigitsMonotone(123321));
+        System.out.println("\n\nNumber is " + findMonotoneNumberWithNumberN(index));
 
     }
 
     public static boolean isNumberDigitsMonotone(int number) {
-        int temp = number;
-
         if(number < 100) {
             return true;
         }
@@ -30,47 +22,36 @@ public class Main {
          * 0 if right digit equals left one
          */
         int isIncreases;
-        int isPreviousPairIncreasing;
+        int check = 0;
+        boolean isDefined = false;
 
-        isPreviousPairIncreasing = isRightPairIncreases(number);
-        number = number / 10;
-
-        while (number > 0) {
+        while (number > 9) {
             isIncreases = isRightPairIncreases(number);
             number = number / 10;
 
-            if(isPreviousPairIncreasing == 0) {
-                continue;
+            if(isIncreases != 0 && !isDefined) {
+                check = isIncreases;
+                isDefined = true;
             }
-            if(isPreviousPairIncreasing + isIncreases == 0 && isIncreases != 0) {
+            if(check != isIncreases && isIncreases != 0) {
                 return false;
             }
         }
 
-        System.out.println(temp +"\n\n");
-
         return true;
     }
 
-
     /**
      * @return -1 if right digit is less than left one
-     * @return 1 if right digit is bigger than left one
-     * @return 0 if right digit equals left one
+     *  1 if right digit is bigger than left one
+     *  0 if right digit equals left one
      */
     public static int isRightPairIncreases(int number) {
         int rightDigit = number % 10;
         number =number / 10;
         int leftDigit = number % 10;
 
-
-        if (rightDigit > leftDigit) {
-            return 1;
-        } else if (rightDigit < leftDigit) {
-            return -1;
-        } else {
-            return 0;
-        }
+        return Integer.compare(rightDigit, leftDigit);
     }
 
     public static int findMonotoneNumberWithNumberN(int n) {
