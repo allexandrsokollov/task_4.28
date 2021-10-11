@@ -5,9 +5,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int index = readIntFromConsole("Write index of monotone number:");
 
-        System.out.println("\n\nNumber is " + findMonotoneNumberWithNumberN(index));
+        for(int index = 0; index < 130; index++) {
+            //int index = readIntFromConsole("Write index of monotone number:");
+
+            System.out.println("\n\nindex is " + index + "  " + findMonotoneNumberWithNumberN(index));
+        }
+
+//        int index = readIntFromConsole("Write index of monotone number:");
+//
+//        System.out.println("\n\nNumber is " + isNumberDigitsMonotone(index));
 
     }
 
@@ -26,6 +33,8 @@ public class Main {
         boolean isDefined = false;
 
         while (number > 9) {
+
+
             isIncreases = isRightPairIncreases(number);
             number = number / 10;
 
@@ -48,7 +57,7 @@ public class Main {
      */
     public static int isRightPairIncreases(int number) {
         int rightDigit = number % 10;
-        number =number / 10;
+        number = number / 10;
         int leftDigit = number % 10;
 
         return Integer.compare(rightDigit, leftDigit);
@@ -56,13 +65,13 @@ public class Main {
 
     public static int findMonotoneNumberWithNumberN(int n) {
         int counter = 0;
-        int number = 0;
+        int number = -1;
 
-        while (counter <= n) {
+        while (counter < n) {
+            number++;
             if(isNumberDigitsMonotone(number)) {
                 counter++;
             }
-            number++;
         }
 
         return  number;
