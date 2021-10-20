@@ -6,15 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        for(int index = 0; index < 130; index++) {
-            //int index = readIntFromConsole("Write index of monotone number:");
+        int index = readIntFromConsole("Write index of monotone number:");
 
-            System.out.println("\n\nindex is " + index + "  " + findMonotoneNumberWithNumberN(index));
-        }
-
-//        int index = readIntFromConsole("Write index of monotone number:");
-//
-//        System.out.println("\n\nNumber is " + isNumberDigitsMonotone(index));
+        System.out.println("\n\nNumber is " + findMonotoneNumberWithNumberN(index));
 
     }
 
